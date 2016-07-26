@@ -33,7 +33,7 @@ class Pokeslack:
         padded_distance = distance * 1.1
         #added to allow limiting of distance in case the users expect ot be stationary as in an office environment
         if padded_distance > self.distance_limit:
-            logger.info('skipping pokemon since its rarity is too low')
+            logger.info('skipping pokemon since its distance is too high')
             return
 
 
