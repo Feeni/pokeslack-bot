@@ -15,12 +15,13 @@ REQ_SLEEP = 1
 TIMESTAMP = '\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000'
 
 class Pokesearch:
-    def __init__(self, api, auth_service, username, password, position):
+    def __init__(self, api, auth_service, username, password, position, csv_file):
         self.api = api
         self.auth_service = auth_service
         self.username = username
         self.password = password
         self.position = position
+        self.csv_file = csv_file
 
     def login(self):
         logger.info('login start with service: %s', self.auth_service)
@@ -33,7 +34,7 @@ class Pokesearch:
 
         logger.info('login successful')
 
-    def search(self, lat, lng, step_limit, step_size, csv_file):
+    def search(self, lat, lng, step_limit, step_size):
         if self.api._auth_provider and self.api._auth_provider._ticket_expire:
             if isinstance(self.api._auth_provider._ticket_expire, (int, long)):
                 remaining_time = self.api._auth_provider._ticket_expire / 1000.0 - time.time()
@@ -76,7 +77,7 @@ class Pokesearch:
                 if not key in all_pokemon:
                     pokemon = pokemons[key]
                     pokemon_id = pokemon['pokemon_id']
-                    pokedata = Pokedata.get(pokemon_id, csv_file)
+                    pokedata = Pokedata.get(pokemon_id, self.csv_file)
                     pokemon['name'] = pokedata['name']
                     pokemon['rarity'] = pokedata['rarity']
                     pokemon['key'] = key
