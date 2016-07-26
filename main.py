@@ -37,6 +37,7 @@ if __name__ == '__main__':
     rarity_limit = int(os.environ.get('RARITY_LIMIT', env.get('RARITY_LIMIT')))
     slack_webhook_url = str(os.environ.get('SLACK_WEBHOOK_URL', env.get('SLACK_WEBHOOK_URL')))
     distance_limit = float(os.environ.get('DISTANCE_LIMIT', env.get('DISTANCE_LIMIT')))
+    csv_file = str(os.environ.get('CSV_FILE', env.get('CSV_FILE'))))
 
     # const vars
     step_size = 0.0025
@@ -51,7 +52,7 @@ if __name__ == '__main__':
     logger.info('location_name: %s', address)
 
     api = PGoApi()
-    pokesearch = Pokesearch(api, auth_service, username, password, position)
+    pokesearch = Pokesearch(api, auth_service, username, password, position, csv_file)
     pokeslack = Pokeslack(rarity_limit, slack_webhook_url, distance_limit)
 
     if not use_cache or not os.path.exists(cached_filename):

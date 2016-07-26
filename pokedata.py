@@ -7,10 +7,10 @@ from datetime import datetime
 class Pokedata:
     pokedata = None
     @staticmethod
-    def get(pokemon_id):
+    def get(pokemon_id, csv_file):
         if not Pokedata.pokedata:
             Pokedata.pokedata = {}
-            with open('pokedata.csv', 'rU') as csvfile:
+            with open(csv_file, 'rU') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     id = int(row[0])
