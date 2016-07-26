@@ -37,7 +37,7 @@ class Pokeslack:
             return
 
 
-        travel_time = padded_distance / 0.00332 # changed this for campusbot since we're not moving and we want more range
+        travel_time = padded_distance / 0.0.0012 # changed this for campusbot since we're not moving and we want more range
         if expires_in.total_seconds() < travel_time:
             logger.info('skipping pokemon since it\'s too far: traveltime=%s for distance=%s', travel_time, distance)
             return
