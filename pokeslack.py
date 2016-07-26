@@ -11,10 +11,11 @@ logger = logging.getLogger(__name__)
 EXPIRE_BUFFER_SECONDS = 30
 
 class Pokeslack:
-    def __init__(self, rarity_limit, slack_webhook_url):
+    def __init__(self, rarity_limit, slack_webhook_url, distance_limit):
         self.sent_pokemon = {}
         self.rarity_limit = rarity_limit
         self.slack_webhook_url = slack_webhook_url
+        self.distance_limit = distance_limit
 
     def try_send_pokemon(self, pokemon, position, distance, debug):
         disappear_time = pokemon['disappear_time']
@@ -30,6 +31,12 @@ class Pokeslack:
             return
 
         padded_distance = distance * 1.1
+        #added to allow limiting of distance in case the users expect ot be stationary as in an office environment
+        if padded_distance > self.distance_limit:
+            logger.info('skipping pokemon since its distance is too high')
+            return
+
+
         travel_time = padded_distance / 0.00332 # changed this for campusbot since we're not moving and we want more range
         if expires_in.total_seconds() < travel_time:
             logger.info('skipping pokemon since it\'s too far: traveltime=%s for distance=%s', travel_time, distance)
