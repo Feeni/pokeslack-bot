@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # PokéSlack
 Get Slack messages posted to a #pokealert channel for rare Pokemon close to you. Get walking directions from your search position and the time it expires. 
 
@@ -44,6 +43,3 @@ Using Heroku:
 This project builds on existing PokemonGo APIs and integrations:  
 https://github.com/tejado/pgoapi  
 https://github.com/AHAAAAAAA/PokemonGo-Map  
-=======
-# campusbot
->>>>>>> c638457fb9ea7cdb1e9e9725e56359cbb1381275
