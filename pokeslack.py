@@ -21,13 +21,9 @@ class Pokeslack:
         disappear_time = pokemon['disappear_time']
         expires_in = disappear_time - datetime.utcnow()
         rarity = pokemon['rarity']
-        track = pokemon['track']
+
         if expires_in.total_seconds() < EXPIRE_BUFFER_SECONDS:
             logger.info('skipping pokemon since it expires too soon')
-            return
-
-        if not track:
-            logger.info('skipping pokemon because it in untracked')
             return
 
         if rarity < self.rarity_limit:

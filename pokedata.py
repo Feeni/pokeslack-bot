@@ -16,11 +16,9 @@ class Pokedata:
                     id = int(row[0])
                     name = row[1]
                     rarity = int(row[2])
-                    track = bool(row[3])
                     Pokedata.pokedata[id] = {
                         'name': name,
-                        'rarity': rarity,
-                        'track' : track
+                        'rarity': rarity
                     }
         return Pokedata.pokedata[pokemon_id]
 
